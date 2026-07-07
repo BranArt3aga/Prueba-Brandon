@@ -31,6 +31,12 @@ describe('TaskService', () => {
       );
     });
 
+    it('should throw ValidationError if description is empty', () => {
+      expect(() => service.create({ title: 'Valid Title', description: '' })).toThrow(
+        ValidationError,
+      );
+    });
+
     it('should throw ValidationError if title exceeds 200 chars', () => {
       expect(() =>
         service.create({ title: 'a'.repeat(201), description: 'Desc' }),

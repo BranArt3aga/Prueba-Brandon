@@ -40,7 +40,7 @@ export class TaskService {
     if (dto.title.trim().length > 200) {
       throw new ValidationError('Title must not exceed 200 characters');
     }
-    if (!dto.description && dto.description !== '') {
+    if (!dto.description || dto.description.trim().length === 0) {
       throw new ValidationError('Description is required');
     }
     if (dto.dueDate && isNaN(Date.parse(dto.dueDate))) {
